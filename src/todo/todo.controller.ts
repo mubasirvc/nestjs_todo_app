@@ -15,7 +15,7 @@ import { UsersService } from 'src/users/user.service';
 import { ITodo } from './interface/todo.interface';
 import { UpdateTodoDto } from './dto/update.todo';
 
-@Controller()
+@Controller('api/')
 export class TodoController {
   constructor(
     private readonly todoService: TodoServices,
