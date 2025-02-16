@@ -8,13 +8,16 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { TodoServices } from './todo.service';
 import { CreateTodoDto } from './dto/create.todo.dto';
 import { UsersService } from 'src/users/user.service';
 import { ITodo } from './interface/todo.interface';
 import { UpdateTodoDto } from './dto/update.todo';
+import { AuthGuard } from 'src/auth/guards/jwt.auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('api/')
 export class TodoController {
   constructor(
