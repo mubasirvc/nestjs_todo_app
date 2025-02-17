@@ -33,7 +33,7 @@ export class TodoServices {
     });
   }
 
-  async update(data: ITodo): Promise<ETodo> {
+  async update(data: Partial<ITodo>): Promise<ETodo> {
     const todo = await this.todoRepository.findOneBy({ id: data.id });
     if (!todo) return null;
 
