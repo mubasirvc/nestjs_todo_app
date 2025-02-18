@@ -1,15 +1,25 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UsersService } from './users/users.service';
-import { UsersModule } from './users/users.module';
+import { UsersService } from './users/user.service';
+import { UsersModule } from './users/user.module';
 import { DatabaseModule } from './database/database.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { EUser } from './users/entity/user.entity';
+import { TodoModule } from './todo/todo.module';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [UsersModule, DatabaseModule, TypeOrmModule.forFeature([EUser]) ],
-  controllers: [AppController],
-  providers: [AppService, UsersService],
+  imports: [
+    UsersModule,
+    DatabaseModule,
+    TodoModule,
+    AuthModule,
+    ConfigModule.forRoot(),
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_SECRET || 'default_secret',
+    }),
+  ],
+  controllers: [],
+  providers: [UsersService, JwtService],
 })
 export class AppModule {}

@@ -56,6 +56,9 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+
+# test coverage
+$ docker run --name nest-todo -p 5432:5432  -e POSTGRES_PASSWORD=password -d postgres
 ```
 
 ## Support
